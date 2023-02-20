@@ -6,3 +6,14 @@ provider "cloudfoundry" {
     skip_ssl_validation = true
     app_logs_max = 30
 }
+
+
+provider "aws" {
+  shared_config_files      = ["$HOME/.aws/config"]
+  shared_credentials_files = ["$HOME/.aws/credentials"]
+}
+
+provider "aws" {
+  shared_config_files      = ["$HOME/.aws/config"]
+  shared_credentials_files = ["$HOME/.aws/credentials"]
+}
