@@ -34,3 +34,25 @@ resource "cloudfoundry_domain" "shared" {
 
 
 
+resource "cloudfoundry_app" "fruit_app-backend" {
+    name = "fruit-app-backend"
+    space = var.CF_SPACE_ID
+    path = "jars/fruit_app.jar"
+    buildpack = "https://github.com/cloudfoundry/java-buildpack.git"
+    timeout          = var.CF_APP_TIMEOUT
+
+
+}
+
+
+resource "cloudfoundry_route" "default" {
+    domain = data.cloudfoundry_domain.apps.domain.id
+    space = data.cloudfoundry_space.dev.id
+    hostname = "notes-app"
+}
+
+resource "cloudfoundry_domain" "shared" {
+  sub_domain = "dev"
+  domain = data.cloudfoundry_domain.apps.domain
+  internal = false
+}
