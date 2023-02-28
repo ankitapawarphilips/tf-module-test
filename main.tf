@@ -17,6 +17,13 @@ resource "cloudfoundry_app" "fruit_app-backend" {
 
 }
 
+
+resource "cloudfoundry_route" "default" {
+    domain = data.cloudfoundry_domain.apps.domain.id
+    space = data.cloudfoundry_space.dev.id
+    hostname = "notes-app"
+}
+
 resource "aws_instance" "my_ec2_instance" {
 	ami = "ami-01fc02c52f147a2da"
 	instance_type = "t3.micro"
@@ -31,11 +38,6 @@ resource "aws_instance" "my_ec2_instance2" {
 	tags = {
 		name = "tf EC2"
 		}
-}
-resource "cloudfoundry_route" "default" {
-    domain = data.cloudfoundry_domain.apps.domain.id
-    space = data.cloudfoundry_space.dev.id
-    hostname = "notes-app"
 }
 
 resource "cloudfoundry_domain" "shared" {
