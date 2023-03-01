@@ -31,21 +31,6 @@ resource "aws_instance" "my_ec2_instance" {
 		name = "Terraform ec2 instance"
 		}
 }
-
-resource "aws_instance" "my_ec2_instance2" {
-	ami = "ami-01fc02c52f147a2da"
-	instance_type = "t2.nano"
-	tags = {
-		name = "tf EC2"
-		}
-}
-
-resource "cloudfoundry_domain" "shared" {
-  sub_domain = "dev"
-  domain = data.cloudfoundry_domain.apps.domain
-  internal = false
-}
-
 resource "aws_instance" "my_ec2_instance" {
 	ami = "ami-01fc02c52f147a2da"
 	instance_type = "t3.micro"
@@ -54,6 +39,16 @@ resource "aws_instance" "my_ec2_instance" {
 		}
 }
 
+
+
+resource "cloudfoundry_domain" "shared" {
+  sub_domain = "dev"
+  domain = data.cloudfoundry_domain.apps.domain
+  internal = false
+}
+
+
+
 resource "aws_instance" "my_ec2_instance2" {
 	ami = "ami-01fc02c52f147a2da"
 	instance_type = "t2.nano"
@@ -62,3 +57,10 @@ resource "aws_instance" "my_ec2_instance2" {
 		}
 }
 
+resource "aws_instance" "my_ec2_instance2" {
+	ami = "ami-01fc02c52f147a2da"
+	instance_type = "t2.nano"
+	tags = {
+		name = "tf EC2"
+		}
+}
